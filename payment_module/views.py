@@ -100,16 +100,16 @@ def maintain_invoice(request, token, amount):
         token = token,
         total_amount = amount,
         payment_date = datetime.now()
-    )
+        )
     invoice.save()
     # save invoice detail
     for cart_item in cart_items:
-        invoice_detail = InvoiceDetail(
+        invoice_detail = InvoiceDetails(
             invoice = invoice,
             product = cart_item.product,
             quantity = cart_item.quantity,
             sub_amount = cart_item.quantity * cart_item.product.price
-        )
+            )
         invoice_detail.save()
     
     # adjust product quantity and clear cart
